@@ -9,7 +9,10 @@ use tokio::io::{AsyncReadExt, AsyncWriteExt};
 
 #[derive(Parser)]
 struct Cli {
+    #[arg(short = 'c', long = "case-dir")]
     case_dir: std::path::PathBuf,
+    #[arg(short = 'o', long = "out-dir")]
+    out_dir: Option<std::path::PathBuf>,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -127,7 +130,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
     }
     // write result file
-    let result_file_path = args.case_dir.join("result.json");
+    let result_file_path = args.out_dir.unwrap_or(args.case_dir).join("result.json");
     let mut result_file = File::create(result_file_path).await?;
     let result_json = serde_json::to_string(&results)?;
     result_file.write_all(result_json.as_bytes()).await?;
