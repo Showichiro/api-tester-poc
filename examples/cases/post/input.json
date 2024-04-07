@@ -1,0 +1,7 @@
+{
+  "url": "https://beta.pokeapi.co/graphql/v1beta",
+  "method": "POST",
+  "body": {
+    "query": "{pokemon_v2_pokemonspecies(where: {}, limit: 20, order_by: {id: asc}) {name}}"
+  }
+}

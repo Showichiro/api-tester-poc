@@ -1,0 +1,8 @@
+{
+  "url": "https://pokeapi.co/api/v2/pokemon",
+  "method": "GET",
+  "query": {
+    "offset": "20",
+    "limit": "20"
+  }
+}
