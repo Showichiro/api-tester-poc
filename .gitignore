@@ -1,3 +1,4 @@
 /target
 /examples/out
 /examples/cases/result.json
+/examples/cases/**/output.json

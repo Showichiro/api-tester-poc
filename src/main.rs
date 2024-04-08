@@ -112,7 +112,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 json: response_data.clone(),
             };
             output_file
-                .write_all(serde_json::to_string(&output_json)?.as_bytes())
+                .write_all(serde_json::to_string_pretty(&output_json)?.as_bytes())
                 .await?;
             let expected_output_path = entry.path().join("expected.json");
             let mut expected_file = File::open(expected_output_path).await?;
@@ -132,7 +132,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // write result file
     let result_file_path = args.out_dir.unwrap_or(args.case_dir).join("result.json");
     let mut result_file = File::create(result_file_path).await?;
-    let result_json = serde_json::to_string(&results)?;
+    let result_json = serde_json::to_string_pretty(&results)?;
     result_file.write_all(result_json.as_bytes()).await?;
     Ok(())
 }
